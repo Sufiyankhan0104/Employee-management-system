@@ -6,8 +6,22 @@ import FailedTask from "./FailedTask";
 
 const TaskList = ({ data }) => {
     return (
-        <div className="h-screen">
-            <div className="h-[40%] w-full rounded-4xl flex items-center justify-start gap-6 flex-nowrap overflow-x-auto tasklist">
+        <div className="h-auto md:h-screen">
+            <div
+                className="
+                    w-full
+                    rounded-4xl
+                    flex
+                    items-stretch
+                    justify-start
+                    gap-4 md:gap-6
+                    flex-nowrap
+                    overflow-x-auto
+                    py-4
+                    px-2 md:px-4
+                    tasklist
+                "
+            >
                 {data.tasks.map((elem, index) => {
                     // Check completed and failed first (final states)
                     if (elem.completed) {
@@ -23,8 +37,7 @@ const TaskList = ({ data }) => {
                     if (elem.active) {
                         return <AcceptTask key={index} data={elem} />
                     }
-                    // Return null if no conditions match
-                    return null;
+                    return null
                 })}
             </div>
         </div>

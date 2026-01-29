@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Authcontext } from '../../context/AuthProvider'
 
 const CreateTask = () => {
@@ -15,7 +14,6 @@ const CreateTask = () => {
     const submitHandler = (e) => {
         e.preventDefault()
 
-        // Task object directly banao, state mein store karne ki zaroorat nahi
         const newTask = {
             title: taskTitle,
             description: taskDescription,
@@ -27,7 +25,6 @@ const CreateTask = () => {
             failed: false
         }
 
-        // Deep copy banao to avoid reference issues
         const updatedUserData = userData.map((employee) => {
             if (asignTo === employee.firstname) {
                 return {
@@ -41,17 +38,12 @@ const CreateTask = () => {
             }
             return employee
         })
-                                
-        // Context update karo
-        setUserData(updatedUserData)
 
-        // localStorage mein save karo
+        setUserData(updatedUserData)
         localStorage.setItem('employees', JSON.stringify(updatedUserData))
 
-        // Success message
         alert(`Task assigned to ${asignTo} successfully!`)
 
-        // Form fields clear karo
         setTaskTitle("")
         setTaskDate("")
         setAsignto("")
@@ -60,23 +52,21 @@ const CreateTask = () => {
     }
 
     return (
-        <div className="m-10">
-            <form onSubmit={(e) => {
-                submitHandler(e)
-            }}
-                className="bg-gray-800 border border-gray-600 rounded-2xl shadow-xl p-10">
-                <div className="flex items-start justify-between gap-8">
+        <div className="p-4 md:p-10">
+            <form
+                onSubmit={submitHandler}
+                className="bg-gray-800 border border-gray-600 rounded-2xl shadow-xl p-6 md:p-10"
+            >
+                <div className="flex flex-col md:flex-row gap-8">
 
                     {/* Left Section */}
-                    <div className="space-y-6 w-1/2">
+                    <div className="space-y-6 w-full md:w-1/2">
 
                         <div>
                             <h3 className="text-white mb-1 font-semibold">Task Title</h3>
                             <input
                                 value={taskTitle}
-                                onChange={(e) => {
-                                    setTaskTitle(e.target.value)
-                                }}
+                                onChange={(e) => setTaskTitle(e.target.value)}
                                 className="bg-gray-700 border border-cyan-300 w-full outline-none px-4 py-2 rounded-xl text-white"
                                 type="text"
                                 placeholder="Make a UI Design"
@@ -85,25 +75,21 @@ const CreateTask = () => {
                         </div>
 
                         <div>
-                            <h3 className="text-white mb-1 font-semibold">Date:</h3>
+                            <h3 className="text-white mb-1 font-semibold">Date</h3>
                             <input
                                 value={taskDate}
-                                onChange={(e) => {
-                                    setTaskDate(e.target.value)
-                                }}
+                                onChange={(e) => setTaskDate(e.target.value)}
                                 className="bg-gray-700 border border-cyan-300 w-full px-4 py-2 rounded-xl outline-none text-white"
-                                type='date'
+                                type="date"
                                 required
                             />
                         </div>
 
                         <div>
-                            <h3 className="text-white mb-1 font-semibold">Assign to:</h3>
+                            <h3 className="text-white mb-1 font-semibold">Assign to</h3>
                             <input
                                 value={asignTo}
-                                onChange={(e) => {
-                                    setAsignto(e.target.value)
-                                }}
+                                onChange={(e) => setAsignto(e.target.value)}
                                 className="bg-gray-700 border border-cyan-300 w-full outline-none px-4 py-2 rounded-xl text-white"
                                 type="text"
                                 placeholder="Employee name"
@@ -112,12 +98,10 @@ const CreateTask = () => {
                         </div>
 
                         <div>
-                            <h3 className="text-white mb-1 font-semibold">Category:</h3>
+                            <h3 className="text-white mb-1 font-semibold">Category</h3>
                             <input
                                 value={taskCategory}
-                                onChange={(e) => {
-                                    setTaskCategory(e.target.value)
-                                }}
+                                onChange={(e) => setTaskCategory(e.target.value)}
                                 className="bg-gray-700 border border-cyan-300 w-full outline-none px-4 py-2 rounded-xl text-white"
                                 type="text"
                                 placeholder="Design, Development, etc..."
@@ -127,16 +111,13 @@ const CreateTask = () => {
                     </div>
 
                     {/* Right Section */}
-                    <div className="w-1/2">
+                    <div className="w-full md:w-1/2 flex flex-col">
                         <h3 className="text-xl font-bold text-white mb-2">Description</h3>
 
                         <textarea
                             value={taskDescription}
-                            onChange={(e) => {
-                                setTaskDescription(e.target.value)
-                            }}
-                            className="bg-gray-700 border border-cyan-300 w-full rounded-2xl p-4 text-white outline-none"
-                            cols="35"
+                            onChange={(e) => setTaskDescription(e.target.value)}
+                            className="bg-gray-700 border border-cyan-300 w-full rounded-2xl p-4 text-white outline-none resize-none"
                             rows="6"
                             required
                         ></textarea>

@@ -2,37 +2,42 @@ import React from 'react'
 
 const CompleteTask = ({ data }) => {
   return (
-    <div className="
-      shrink-0 
-      w-full sm:w-[300px] 
-      bg-green-400/90 
-      rounded-2xl 
-      p-4 
-      shadow-lg 
-      hover:shadow-2xl 
-      transition-all
-    ">
+    <div
+      className="
+        shrink-0
+        w-full sm:w-[280px] md:w-[300px]
+        bg-green-400/90
+        rounded-2xl
+        p-4
+        shadow-lg
+        hover:shadow-2xl
+        transition-all
+      "
+    >
       {/* Header */}
       <div className="flex items-center justify-between gap-2">
-        <h1 className="
-          bg-yellow-600 
-          text-white 
-          text-xs sm:text-sm 
-          py-1 px-4 
-          rounded-full 
-          font-semibold
-        ">
+        <h1
+          className="
+            bg-yellow-600
+            text-white
+            text-xs sm:text-sm
+            py-1 px-3 sm:px-4
+            rounded-full
+            font-semibold
+            truncate
+          "
+        >
           {data.category}
         </h1>
 
-        <p className="text-xs sm:text-sm text-gray-800">
+        <p className="text-xs sm:text-sm text-gray-800 whitespace-nowrap">
           {data.date}
         </p>
       </div>
 
       {/* Body */}
       <div className="mt-4 space-y-2">
-        <h1 className="text-lg sm:text-xl font-bold text-gray-900">
+        <h1 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">
           {data.title}
         </h1>
 
@@ -42,18 +47,20 @@ const CompleteTask = ({ data }) => {
       </div>
 
       {/* Action */}
-      <button className="
-      cursor-pointer
-        mt-4 
-        bg-amber-800 
-        hover:bg-amber-900 
-        text-white 
-        py-2 
-        rounded-lg 
-        text-sm 
-        w-full 
-        transition
-      ">
+      <button
+        className="
+          cursor-pointer
+          mt-4
+          bg-amber-800
+          hover:bg-amber-900
+          text-white
+          py-2
+          rounded-lg
+          text-sm
+          w-full
+          transition
+        "
+      >
         Complete Task
       </button>
     </div>
